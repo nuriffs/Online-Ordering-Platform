@@ -1,0 +1,35 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #EADDCA;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.top-right-container {
+    margin-top: 10px;
+    margin-right: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#logoutButton, 
+#cartButton {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#logoutButton:hover, 
+#cartButton:hover {
+    background-color: #555;
+}

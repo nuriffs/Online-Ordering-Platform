@@ -1,0 +1,37 @@
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #EADDCA;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  .navbar a {display: inline-block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    border-right: 2px solid transparent;
+  }
+  
+  .navbar a:not(:last-child)::after {
+    content: '|';
+  }
+
+  .navbar a::after {    
+    padding-left: 35px;
+    padding-right: 15px;
+    color: black;
+  }
+  
+  .navbar a:hover {
+    background-color: #a5957b;
+    color: black;
+  }
+  
+  .navbar a.active {
+    background-color: #a5957b;
+    color: black;
+  }
