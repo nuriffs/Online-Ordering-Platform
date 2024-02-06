@@ -4,7 +4,7 @@ import '../styles/MenuLoggedIn.css';
 
 const MenuLoggedIn = ({ userId }) => {
   const api = 'http://localhost:9001/api/v1/menu';
-  const cartApi = `http://localhost:9001/api/v1/cart/${userId}/items`;
+  const cartApi = `http://localhost:9001/api/v1/cart/${userId}/{cartItemId}`;
   const [menuItems, setMenuItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -54,7 +54,7 @@ const MenuLoggedIn = ({ userId }) => {
 
   return (
     <div>
-      <h2>Menu for Logged-In Users</h2>
+      <h2>Menu</h2>
 
       <ul style={{ listStyle: 'none' }}>
         {menuItems.map((menuItem) => (
