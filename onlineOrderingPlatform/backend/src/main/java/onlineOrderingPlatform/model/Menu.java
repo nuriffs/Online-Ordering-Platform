@@ -2,6 +2,7 @@ package onlineOrderingPlatform.model;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 
 import java.util.List;
 
@@ -13,9 +14,10 @@ import jakarta.persistence.GenerationType;
 @Entity
 public class Menu {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long foodId;
-	private String foodName;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menuIdGenerator")
+	@SequenceGenerator(name="menuIdGenerator", sequenceName="menuIdGenerator", allocationSize = 1)
+	private long menuId;
+	private String menuName;
 	private String description;
 	private double price;
 	
@@ -29,30 +31,30 @@ public class Menu {
 		super();
 	}
 	
-	public Menu(String foodName, String description, double price, List<CartItem> cartItems,
+	public Menu(String menuName, String description, double price, List<CartItem> cartItems,
 			List<Favourite> favourites) {
 		super();
-		this.foodName = foodName;
+		this.menuName = menuName;
 		this.description = description;
 		this.price = price;
 		this.cartItems = cartItems;
 		this.favourites = favourites;
 	}
 
-	public long getFoodId() {
-		return foodId;
+	public long getmenuId() {
+		return menuId;
 	}
 
-	public void setFoodId(long foodId) {
-		this.foodId = foodId;
+	public void setmenuId(long menuId) {
+		this.menuId = menuId;
 	}
 
-	public String getFoodName() {
-		return foodName;
+	public String getmenuName() {
+		return menuName;
 	}
 	
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
+	public void setmenuName(String menuName) {
+		this.menuName = menuName;
 	}
 	
 	public String getDescription() {

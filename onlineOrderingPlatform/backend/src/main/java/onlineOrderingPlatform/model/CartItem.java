@@ -1,16 +1,24 @@
 package onlineOrderingPlatform.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+
+
 
 @Entity
 public class CartItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartItemIdGenerator")
+	@SequenceGenerator(name="cartItemIdGenerator", sequenceName="cartItemIdGenerator", allocationSize = 1)
 	private Long cartItemId;
 	
 	private Long itemId;
@@ -26,13 +34,15 @@ public class CartItem {
     @JoinColumn(name = "menu_id")
     private Menu menu;
     
-	
+    @ManyToMany(mappedBy = "cartItems")
+    private List<Cart> cart;
 
 	public CartItem() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public CartItem(Long itemId, String itemName, int quantity, double price, Order order, Menu menu) {
+	public CartItem(Long itemId, String itemName, int quantity, double price, Order order, Menu menu, List<Cart> cart) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
@@ -40,17 +50,7 @@ public class CartItem {
 		this.price = price;
 		this.order = order;
 		this.menu = menu;
-	}
-
-	public CartItem(Long cartItemId, Long itemId, String itemName, int quantity, double price, Order order, Menu menu) {
-		super();
-		this.cartItemId = cartItemId;
-		this.itemId = itemId;
-		this.itemName = itemName;
-		this.quantity = quantity;
-		this.price = price;
-		this.order = order;
-		this.menu = menu;
+		this.cart = cart;
 	}
 
 	public Long getCartItemId() {
@@ -93,12 +93,12 @@ public class CartItem {
 		this.price = price;
 	}
 
-	public String getCartId() {
-		return null;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setCartId(Long cartId) {
-		this.cartItemId = cartId;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Menu getMenu() {
@@ -109,12 +109,12 @@ public class CartItem {
 		this.menu = menu;
 	}
 
-	public Order getOrder() {
-		return order;
+	public List<Cart> getCart() {
+		return cart;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setCart(List<Cart> cart) {
+		this.cart = cart;
 	}
 
 	

@@ -39,7 +39,7 @@ public class FavouriteService {
             return;
         }
 
-        List<Favourite> existingFavorites = favouriteRepo.findByUserUserIdAndMenuFoodId(userId, menuId);
+        List<Favourite> existingFavorites = favouriteRepo.findByUserUserIdAndMenuMenuId(userId, menuId);
 
         if (existingFavorites.isEmpty()) {
             Favourite newFavorite = new Favourite();
@@ -51,6 +51,6 @@ public class FavouriteService {
 	}
 
 	public void removeFromFavorites(long userId, long menuId) {
-		favouriteRepo.deleteByUserUserIdAndMenuFoodId(userId, menuId);
+		favouriteRepo.deleteByUserUserIdAndMenuMenuId(userId, menuId);
 	}
 }

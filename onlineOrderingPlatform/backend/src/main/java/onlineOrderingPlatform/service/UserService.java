@@ -2,6 +2,7 @@ package onlineOrderingPlatform.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,10 @@ public class UserService {
 	private MenuRepository menuRepo;
 	
 	public User authenticateUser(@NotBlank String username, @Size(min = 8) String password) {
-		User user = userRepo.findByUsername(username);
+		Optional<User> user = userRepo.findByUsername(username);
 
-        if (user != null && isValidPassword(password, user.getPassword())) {
-            return user;
+        if (!user.isEmpty() && isValidPassword(password, user.get().getPassword())) {
+            return user.get();
         } else {
             return null;
         }
@@ -37,6 +38,10 @@ public class UserService {
 		return userRepo.findById(Long.parseLong(userId)).orElse(null);
 	}
 
+	public User getUserByUsername(String username) {
+		return userRepo.findByUsername(username).orElse(null);
+	}
+	
 	public List<Favourite> getUserFavorites(String userId) {
 	    User user = userRepo.findById(Long.parseLong(userId)).orElse(null);
 

@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import onlineOrderingPlatform.OrderStatus;
 
@@ -19,7 +20,8 @@ import onlineOrderingPlatform.OrderStatus;
 @Table(name = "user_order")
 public class Order {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderIdGenerator")
+	@SequenceGenerator(name="orderIdGenerator", sequenceName="orderIdGenerator", allocationSize = 1)
     private long orderId;
 
     private double totalAmount;
@@ -35,7 +37,7 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-
+    
 	public Order() {
 		super();
 	}

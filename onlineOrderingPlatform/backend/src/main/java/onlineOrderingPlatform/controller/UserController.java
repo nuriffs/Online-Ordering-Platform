@@ -55,10 +55,17 @@ public class UserController {
         }
 	}
 	
-	// Retrieve information about a user
+	// Retrieve information about a user by Id
 	@GetMapping("/{userId}")
 	public Optional<User> getUserByUserId(@PathVariable String userId) {
 		User user = userService.getUserByUserId(userId);
+		return Optional.ofNullable(user);
+	}
+	
+	// Retrieve information about a user by username
+	@GetMapping("/{username}")
+	public Optional<User> getUserByUsername(@PathVariable String username) {
+		User user = userService.getUserByUsername(username);
 		return Optional.ofNullable(user);
 	}
 	

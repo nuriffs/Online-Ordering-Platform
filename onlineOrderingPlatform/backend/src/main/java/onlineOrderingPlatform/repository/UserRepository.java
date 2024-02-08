@@ -13,7 +13,7 @@ import onlineOrderingPlatform.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 
-	User findByUsername(@NotBlank String username);
+	Optional<User> findByUsername(@NotBlank String username);
 
 	@Query("SELECT u FROM User u WHERE u.userId = :userId")
     Optional<User> findById(@Param("userId") long userId);
